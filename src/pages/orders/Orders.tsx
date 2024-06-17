@@ -37,7 +37,7 @@ export default function Orders() {
           <td>88</td>
           <td>123</td>
           <td>
-            <img src="/Images/delete.png" alt=""  className=" w-[20px] cursor-pointer"/>
+            <img src="/Images/delete.png" alt="" className=" w-[20px] cursor-pointer"/>
           </td>
         </tr>
         <tr className=" h-[50px] bg-[#16864e50]">
