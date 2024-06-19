@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom"
 
 export default function Orders() {
+
+  const currentUser = {
+    id:1,
+    username:"Okosa Leonard",
+    isSeller:true
+  }
   return (
     <div className="flex justify-center">
     <div className=" w-[1300px] py-[50px] px-[0px]">
       <div className="flex items-center justify-between">
-        <h1 className="font-Mont">Gigs</h1>
+        <h1 className="font-Mont">Orders</h1>
         <Link to="/add">
         <button className="bg-[#1dbf73] text-white font-medium border-none p-[10px] cursor-pointer">Add New Gig</button>
         </Link>
@@ -15,8 +21,8 @@ export default function Orders() {
           <th className="text-left">Image</th>
           <th className="text-left">Title</th>
           <th className="text-left">Price</th>
-          <th className="text-left">Orders</th>
-          <th className="text-left">Action</th>
+          <th className="text-left">{currentUser?.isSeller ? "Buyer" : "Seller"}</th>
+          <th className="text-left">Contact</th>
         </tr>
         <tr className=" h-[50px] bg-[#16864e50]">
           <td>
@@ -26,7 +32,7 @@ export default function Orders() {
           <td>88</td>
           <td>123</td>
           <td>
-            <img src="/Images/delete.png" alt=""  className=" w-[20px] cursor-pointer"/>
+            <img src="/Images/message.png" alt=""  className=" w-[20px] cursor-pointer"/>
           </td>
         </tr>
         <tr className=" h-[50px] ">
@@ -37,7 +43,7 @@ export default function Orders() {
           <td>88</td>
           <td>123</td>
           <td>
-            <img src="/Images/delete.png" alt="" className=" w-[20px] cursor-pointer"/>
+            <img src="/Images/message.png" alt="" className=" w-[20px] cursor-pointer"/>
           </td>
         </tr>
         <tr className=" h-[50px] bg-[#16864e50]">
@@ -48,7 +54,7 @@ export default function Orders() {
           <td>88</td>
           <td>123</td>
           <td>
-            <img src="/Images/delete.png" alt=""  className=" w-[20px] cursor-pointer"/>
+            <img src="/Images/message.png" alt=""  className=" w-[20px] cursor-pointer"/>
           </td>
         </tr>
         <tr className=" h-[50px]">
@@ -59,7 +65,7 @@ export default function Orders() {
           <td>88</td>
           <td>123</td>
           <td>
-            <img src="/Images/delete.png" alt=""  className=" w-[20px] cursor-pointer"/>
+            <img src="/Images/message.png" alt=""  className=" w-[20px] cursor-pointer"/>
           </td>
         </tr>
         <tr className=" h-[50px] bg-[#16864e50]">
@@ -70,7 +76,7 @@ export default function Orders() {
           <td>88</td>
           <td>123</td>
           <td>
-            <img src="/Images/delete.png" alt=""  className=" w-[20px] cursor-pointer"/>
+            <img src="/Images/message.png" alt=""  className=" w-[20px] cursor-pointer"/>
           </td>
         </tr>
         <tr className=" h-[50px]">
@@ -81,7 +87,7 @@ export default function Orders() {
           <td>88</td>
           <td>123</td>
           <td>
-            <img src="/Images/delete.png" alt=""  className=" w-[20px] cursor-pointer"/>
+            <img src="/Images/message.png" alt=""  className=" w-[20px] cursor-pointer"/>
           </td>
         </tr>
       </table>
