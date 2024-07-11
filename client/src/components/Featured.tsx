@@ -2,7 +2,7 @@
 
 export default function Featured() {
   return (
-    <div className="flex justify-center bg-green-800 text-white">
+    <div className="flex justify-center bg-[#1dbf73] text-white">
         <div className="w-4/5 flex items-center">
             <div className="flex flex-col gap-7 w-[650px]">
                 <h1 className="text text-4xl font-Mont">Find the perfect <i className=" font-extralight">freelance</i> services for your business.</h1>
