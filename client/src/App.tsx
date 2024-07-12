@@ -12,7 +12,9 @@ import Message from './pages/message/Message';
 import Messages from './pages/messages/Messages';
 import Register from './pages/register/Register';
 import Orders from './pages/orders/Orders';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+const queryClient = new QueryClient();
 
 
 function App() {
@@ -20,9 +22,11 @@ function App() {
   const Layout = ()=>{
     return (
       <div>
+        <QueryClientProvider client={queryClient}>
       <Navbar/>
       <Outlet/>
       <Footer/>
+      </QueryClientProvider>
       </div>
     )
   }

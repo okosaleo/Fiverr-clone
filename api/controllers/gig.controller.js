@@ -5,7 +5,7 @@ export const createGig = async(req, res, next) => {
    if(!req.isSeller) return next(createError(403, "Only sellers can create a gig!"));
 
    const newGig = new Gig({
-      userid: req.userid,
+      userId: req.userId,
       ...req.body,
    });
 
@@ -29,9 +29,28 @@ export const deleteGig = async(req, res, next) => {
       next(error)
    }
 }
-export const getGigs = async(req, res, next) => {
-
-}
 export const getGig = async(req, res, next) => {
-
+   try {
+      const gig = await Gig.findById(req.params.id);
+      if (!gig) next(createError(404, "Gig not Found!"))
+      res.status(200).send(gig)
+   } catch (error) {
+      next(error)
+   }
+}
+export const getGigs = async(req, res, next) => {
+   const q = req.query;
+   const filters = {
+      ...(q.userId && { userId: q.userId }),
+      ...(q.cat && { cat: q.cat}),
+      ...((q.min || q.max) && {price: {...(q.min && { $gt: q.min}), ...(q.min && { gt: q.min }) },
+      }),
+      ...(q.search && { title: { $regex: q.search, $options: "i" }}),
+   }
+   try {
+      const gigs = await Gig.find(filters);
+      res.status(200).send(gigs)
+   } catch (error) {
+      next(error)
+   }
 }

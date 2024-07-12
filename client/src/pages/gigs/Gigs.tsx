@@ -1,10 +1,21 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import GigCard from "../../components/GigCard"
-import { gigs } from "../../data"
+import { useQuery } from "@tanstack/react-query"
+import newRequest from "../../utils/newRequests"
 
 export default function Gigs() {
   const [sort, setSort] = useState("sales")
   const [open, setOpen] = useState(false)
+  const minRef = useRef();
+  const maxRef = useRef();
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () =>
+      newRequest.get("/gigs").then((res) => {
+        return res.data
+      })
+  })
 
   const reSort = (type) =>{
     setSort(type)
@@ -20,8 +31,8 @@ export default function Gigs() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 font-medium text-gray-600">
             <span>Budget</span>
-            <input className=" p-1 border border-gray-500 outline-none" type="text" placeholder="min" />
-            <input className=" p-1 border border-gray-500 outline-none" type="text" placeholder="max" />
+            <input className=" p-1 border border-gray-500 outline-none" type="text" placeholder="min" ref={minRef}/>
+            <input className=" p-1 border border-gray-500 outline-none" type="text" placeholder="max" ref={maxRef} />
             <button className=" bg-green-600 text-white cursor-pointer border-0  py-[5px] px-3 rounded">Apply</button>
           </div>
           <div className=" flex items-center gap-3 relative">
@@ -35,9 +46,10 @@ export default function Gigs() {
           </div>
         </div>
         <div className=" flex justify-between flex-wrap px-24">
-          {gigs.map(gig=>(
+          {isLoading ? "Loading" : error ? "Someething went wrong!" :
+           data.map((gig) => 
             <GigCard key={gig.id} props={gig}/>
-          ))}
+          )}
         </div>
       </div>
     </div>
